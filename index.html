@@ -1,0 +1,519 @@
+
+<title id="t">تقرير صندوق الأحفاد</title>
+<link id="lk1" rel="preconnect" href="https://fonts.googleapis.com">
+<link id="lk2" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style id="main-css">
+html,body{direction:rtl}
+:root{
+  --bg:#f5f1e8; --surface:#fffdf8; --ink:#1d2a24; --muted:#6b756f; --line:#e4ddcc;
+  --green:#1f5c45; --green-2:#2f7a5d; --green-soft:#e3efe8; --gold:#b8892e; --gold-soft:#f6ecd5;
+  --red:#b3392f; --red-soft:#f8e3df; --shadow:0 1px 2px rgba(30,40,30,.06),0 6px 20px rgba(30,40,30,.06);
+  --hero1:#174a38; --hero2:#2b6b52;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#111915; --surface:#18221d; --ink:#e9efe9; --muted:#9aa89f; --line:#2a3830;
+    --green:#5fbf94; --green-2:#7ad0a8; --green-soft:#1d3329; --gold:#e0b45a; --gold-soft:#3a3018;
+    --red:#ef8a7f; --red-soft:#3b1f1c; --shadow:none; --hero1:#12392b; --hero2:#1c5440;
+  }
+}
+:root[data-theme="dark"]{
+    --bg:#111915; --surface:#18221d; --ink:#e9efe9; --muted:#9aa89f; --line:#2a3830;
+    --green:#5fbf94; --green-2:#7ad0a8; --green-soft:#1d3329; --gold:#e0b45a; --gold-soft:#3a3018;
+    --red:#ef8a7f; --red-soft:#3b1f1c; --shadow:none; --hero1:#12392b; --hero2:#1c5440;
+  ; color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Tajawal','Segoe UI',Tahoma,Arial,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px 48px}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit}
+.hero{margin:0;padding:28px 16px 64px;color:#fff;background:
+  radial-gradient(circle at 12% 0,rgba(255,255,255,.10),transparent 40%),
+  linear-gradient(135deg,var(--hero1),var(--hero2));position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><path d='M32 4l6 14 14-6-6 14 14 6-14 6 6 14-14-6-6 14-6-14-14 6 6-14-14-6 14-6-6-14 14 6z' fill='none' stroke='white' stroke-width='1.2'/></svg>");background-size:64px;pointer-events:none}
+.hero-in{max-width:1080px;margin:0 auto;position:relative;z-index:1;display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.eyebrow{font-size:13px;opacity:.8;letter-spacing:.02em}
+.hero h1{margin:4px 0 6px;font-size:clamp(22px,4.2vw,34px);font-weight:800;line-height:1.3}
+.hero .asof{font-size:14px;opacity:.9}
+.hero .actions{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 16px;border-radius:10px;cursor:pointer;font-weight:500;transition:transform .08s,background .15s}
+.btn:hover{background:var(--green-soft)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--green);border-color:var(--green);color:#fff}
+.btn.primary:hover{background:var(--green-2)}
+.btn.ghost{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.35);color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.24)}
+.btn.danger{color:var(--red);border-color:var(--red)}
+.btn.sm{padding:5px 11px;font-size:14px;border-radius:8px}
+.nav{display:flex;gap:6px;margin:-24px 0 18px;position:relative;z-index:2;background:var(--surface);padding:6px;border-radius:14px;box-shadow:var(--shadow);overflow-x:auto}
+.nav button{flex:1;min-width:max-content;border:0;background:transparent;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:500;color:var(--muted)}
+.nav button.on{background:var(--green);color:#fff}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:-40px;position:relative;z-index:2}
+.nav + .kpis{margin-top:0}
+.kpi{background:var(--surface);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.kpi .l{color:var(--muted);font-size:14px}
+.kpi .v{font-size:clamp(24px,3.4vw,32px);font-weight:800;line-height:1.2;margin-top:2px;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:14px;font-weight:500;color:var(--muted);margin-inline-start:4px}
+.kpi .s{color:var(--muted);font-size:13px;margin-top:2px}
+.kpi.main{background:var(--green);color:#fff;border-color:var(--green)}
+.kpi.main .l,.kpi.main .s,.kpi.main .v small{color:rgba(255,255,255,.82)}
+.sec{margin-top:26px}
+.sec>h2{font-size:19px;margin:0 0 10px;font-weight:700;display:flex;align-items:center;gap:8px}
+.sec>h2::before{content:"";width:5px;height:20px;border-radius:3px;background:var(--gold)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:26px}
+.tabs button{border:1px solid var(--line);background:var(--surface);padding:7px 18px;border-radius:999px;cursor:pointer;font-weight:500}
+.tabs button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:700;font-size:14px;color:var(--muted);background:transparent}
+td.name,th.name{text-align:start;position:sticky;inset-inline-start:0;background:var(--surface);font-weight:500}
+tr.tot td{font-weight:800;border-top:2px solid var(--ink);border-bottom:0;background:var(--green-soft)}
+tr.tot td.name{background:var(--green-soft)}
+.bar{display:inline-block;vertical-align:middle;height:8px;border-radius:4px;background:var(--gold);min-width:2px}
+.pct{display:flex;align-items:center;gap:8px;justify-content:flex-start;min-width:120px}
+.stmt{display:grid;gap:0}
+.stmt .r{display:flex;justify-content:space-between;gap:12px;padding:10px 4px;border-bottom:1px dashed var(--line)}
+.stmt .r.end{border-bottom:0;border-top:2px solid var(--ink);font-weight:800;font-size:18px;margin-top:4px;padding-top:12px}
+.stmt .plus{color:var(--green)} .stmt .minus{color:var(--red)}
+.stmt .note{font-size:13px;color:var(--muted);margin-top:-6px;padding:0 4px 8px}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--muted);margin:2px 0 8px;flex-wrap:wrap}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-inline-end:5px;vertical-align:-1px}
+svg.chart{width:100%;height:auto;display:block}
+svg.chart text{fill:var(--muted);font-family:inherit;font-size:11px}
+svg.chart .grid{stroke:var(--line);stroke-width:1}
+svg.chart .tv{fill:var(--ink);font-weight:700;font-size:10.5px}
+.ok{color:var(--green);font-weight:700}
+.miss{background:var(--red-soft);color:var(--red);font-weight:700;border-radius:6px}
+.fut{color:var(--muted);opacity:.5}
+th.curm{background:var(--gold-soft);color:var(--ink);border-radius:8px 8px 0 0;box-shadow:inset 0 -3px 0 var(--gold)}
+th.curm small{font-weight:500;font-size:11px;color:var(--muted)}
+.mxbar{display:flex;gap:6px;margin-bottom:8px}
+.help{color:var(--muted);font-size:13px;margin:6px 0 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+input.num,input.txt,select.sel{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 8px;text-align:center;width:72px}
+input.txt{width:100%;text-align:start}
+input.num:focus,input.txt:focus,select.sel:focus{outline:2px solid var(--green);outline-offset:0;background:var(--surface)}
+select.sel{width:auto;text-align:start}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:4px;min-width:160px}
+.field label{font-size:13px;color:var(--muted)}
+.btn:disabled{opacity:.4;cursor:default}
+.live{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:14px}
+.live b{font-variant-numeric:tabular-nums}
+#savestate{font-size:13px;opacity:.9}
+.foot{margin-top:34px;color:var(--muted);font-size:13px;text-align:center}
+.pubgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.pubgrid .card h3{margin:0 0 6px;font-size:17px}
+.pubgrid .card p{margin:0 0 12px;color:var(--muted);font-size:14px}
+#pubbar{position:fixed;inset-inline:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.28);max-width:640px;margin-inline:auto}
+#pubbar .btn{white-space:nowrap}
+#pubbar[hidden]{display:none}
+#toast[hidden]{display:none}
+#okbar{position:fixed;inset-inline:12px;top:calc(12px + env(safe-area-inset-top,0px));z-index:60;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--green);color:#fff;padding:12px 14px;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.28);max-width:640px;margin-inline:auto;font-size:15px}
+#okbar span{opacity:.9;font-size:13px}
+#okbar .btn.primary{background:#fff;color:var(--green);border-color:#fff}
+#toast{position:fixed;inset-inline:12px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:70;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:12px;max-width:420px;margin-inline:auto;text-align:center;font-size:14px}
+
+.empty{color:var(--muted);text-align:center;padding:18px}
+@media print{
+  .nav,.noprint,.tabs,.hero .actions,.mxbar{display:none!important}
+  body{background:#fff;color:#000}
+  .hero{background:#174a38!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .kpi.main{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card,.kpi{box-shadow:none;break-inside:avoid}
+  .sec{break-inside:avoid}
+}
+</style>
+
+
+<div id="app"></div>
+<script id="fund-data" type="application/json">{"title":"أحفاد المرحوم الحاج حسن العقلة العطيات","houses":[{"id":"h1","name":"بيت المرحوم أبو سلطان"},{"id":"h2","name":"بيت أبو سامي"},{"id":"h3","name":"بيت أبو علاء"},{"id":"h4","name":"بيت المرحوم أبو أنس"},{"id":"h5","name":"بيت أبو مؤيد"},{"id":"h6","name":"بيت أبو حسن"},{"id":"h7","name":"بيت أبو عبدالله"}],"years":{"2024":{"months":[8,9,10,11,12],"opening":0,"rates":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"subs":{"8":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"9":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"10":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"11":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"12":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7}},"don":{"8":{"h1":0,"h2":11,"h3":0,"h4":5,"h5":42,"h6":3,"h7":0},"9":{"h1":0,"h2":1,"h3":0,"h4":5,"h5":22,"h6":3,"h7":0},"10":{"h1":0,"h2":1,"h3":0,"h4":5,"h5":37,"h6":3,"h7":0},"11":{"h1":0,"h2":1,"h3":0,"h4":5,"h5":20,"h6":0,"h7":0},"12":{"h1":0,"h2":1,"h3":0,"h4":5,"h5":12,"h6":0,"h7":0}}},"2025":{"months":[1,2,3,4,5,6,7,8,9,10,11,12],"opening":0,"rates":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"subs":{"1":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"2":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"3":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"4":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"5":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"6":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"7":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"8":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"9":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"10":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"11":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":13,"h6":7,"h7":7},"12":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":15,"h6":7,"h7":7}},"don":{"1":{"h1":0,"h2":1,"h3":0,"h4":5,"h5":12,"h6":0,"h7":0},"2":{"h1":0,"h2":1,"h3":0,"h4":5,"h5":12,"h6":0,"h7":0},"3":{"h1":0,"h2":1,"h3":0,"h4":5,"h5":12,"h6":0,"h7":0},"4":{"h1":0,"h2":1,"h3":0,"h4":5,"h5":7,"h6":0,"h7":0},"5":{"h1":0,"h2":1,"h3":0,"h4":5,"h5":7,"h6":0,"h7":0},"6":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":7,"h6":0,"h7":0},"7":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":12,"h6":0,"h7":0},"8":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":7,"h6":0,"h7":0},"9":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":7,"h6":3,"h7":0},"10":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":7,"h6":0,"h7":0},"11":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":7,"h6":0,"h7":0},"12":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":5,"h6":0,"h7":0}}},"2026":{"months":[1,2,3,4,5,6,7,8,9,10,11,12],"opening":0,"rates":{"h1":14,"h2":9,"h3":14,"h4":5,"h5":16,"h6":7,"h7":7},"subs":{"1":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":15,"h6":7,"h7":7},"2":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":15,"h6":7,"h7":7},"3":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":15,"h6":7,"h7":7},"4":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":16,"h6":7,"h7":7},"5":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":16,"h6":7,"h7":7},"6":{"h1":14,"h2":9,"h3":14,"h4":5,"h5":16,"h6":7,"h7":7},"7":{"h1":14,"h2":9,"h3":14,"h4":5,"h5":16,"h6":7,"h7":7},"8":{"h1":15,"h2":9,"h3":14,"h4":5,"h5":16,"h6":8,"h7":8},"9":{"h1":100,"h2":9,"h3":14,"h4":5,"h5":0,"h6":7,"h7":8},"10":{"h1":0,"h2":0,"h3":0,"h4":0,"h5":0,"h6":0,"h7":0},"11":{"h1":0,"h2":0,"h3":0,"h4":0,"h5":0,"h6":0,"h7":0},"12":{"h1":0,"h2":0,"h3":0,"h4":0,"h5":0,"h6":0,"h7":0}},"don":{"1":{"h1":0,"h2":1,"h3":2,"h4":0,"h5":5,"h6":0,"h7":0},"2":{"h1":0,"h2":1,"h3":2,"h4":0,"h5":5,"h6":0,"h7":0},"3":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":4,"h6":0,"h7":0},"4":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":0,"h6":0,"h7":0},"5":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":4,"h6":0,"h7":0},"6":{"h1":1,"h2":1,"h3":0,"h4":0,"h5":4,"h6":0,"h7":0},"7":{"h1":1,"h2":1,"h3":0,"h4":0,"h5":4,"h6":0,"h7":0},"8":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":4,"h6":0,"h7":0},"9":{"h1":0,"h2":1,"h3":0,"h4":0,"h5":0,"h6":0,"h7":0},"10":{"h1":0,"h2":0,"h3":0,"h4":0,"h5":0,"h6":0,"h7":0},"11":{"h1":0,"h2":0,"h3":0,"h4":0,"h5":0,"h6":0,"h7":0},"12":{"h1":0,"h2":0,"h3":0,"h4":0,"h5":0,"h6":0,"h7":0}}}},"expenses":[],"asOf":{"year":2026,"month":9},"updated":1790878457045}</script>
+<script id="main-js">
+(function(){
+'use strict';
+var MODE='view';
+document.documentElement.setAttribute('dir','rtl');document.documentElement.setAttribute('lang','ar');
+var MN=['كانون ثاني','شباط','آذار','نيسان','أيار','حزيران','تموز','آب','أيلول','تشرين أول','تشرين ثاني','كانون أول'];
+var MS=['ك٢','شباط','آذار','نيسان','أيار','حزيران','تموز','آب','أيلول','ت١','ت٢','ك١'];
+var KEY='hasan-fund-v1';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var fmt=function(n){n=Math.round((+n||0)*100)/100;return n.toLocaleString('en-US',{maximumFractionDigits:2})};
+var num=function(s){s=String(s==null?'':s).replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)}).replace(/[،,]/g,'.').replace(/[^\d.\-]/g,'');var v=parseFloat(s);return isNaN(v)?0:v};
+
+var EMB=JSON.parse($('#fund-data').textContent);
+var DB=JSON.parse(JSON.stringify(EMB));
+var dirty=false;
+var saveT=null;
+function setDirty(v){dirty=v;var b=$('#pubbar');if(b)b.hidden=!(v&&MODE==='admin');var e=$('#savestate');if(e)e.textContent=v?'● تعديلات لم تُنشر بعد':''}
+function save(){
+  DB.updated=Date.now();DB.base=EMB.updated;
+  try{localStorage.setItem(KEY,JSON.stringify(DB));}catch(e){}
+  setDirty(true);
+}
+
+function saveSoon(){clearTimeout(saveT);saveT=setTimeout(save,250)}
+
+var ui={undo:[],tab:'report',year:String(DB.asOf.year),entryYear:DB.asOf.year,mx:'subs'};
+
+/* ---------- حسابات ---------- */
+function yrs(){return Object.keys(DB.years).map(Number).sort(function(a,b){return a-b})}
+function cell(y,kind,m,h){var v=DB.years[y][kind]; v=v&&v[m]&&v[m][h]; return +v||0}
+function due(y,m){return y<DB.asOf.year||(y===DB.asOf.year&&m<=DB.asOf.month)}
+function lastDue(y){return y<DB.asOf.year?12:(y>DB.asOf.year?0:DB.asOf.month)}
+function calcAll(){
+  var out={},prev=null;
+  yrs().forEach(function(y){
+    var Y=DB.years[y],o={year:y,months:Y.months,byHouse:{},byMonth:{},subs:0,don:0};
+    DB.houses.forEach(function(h){o.byHouse[h.id]={s:0,d:0}});
+    Y.months.forEach(function(m){
+      var s=0,d=0;
+      DB.houses.forEach(function(h){var a=cell(y,'subs',m,h.id),b=cell(y,'don',m,h.id);o.byHouse[h.id].s+=a;o.byHouse[h.id].d+=b;s+=a;d+=b});
+      o.byMonth[m]={s:s,d:d};o.subs+=s;o.don+=d;
+    });
+    o.exp=DB.expenses.filter(function(e){return +e.year===y}).reduce(function(a,e){return a+(+e.amount||0)},0);
+    o.opening=prev===null?(+Y.opening||0):prev;
+    o.closing=o.opening+o.subs+o.don-o.exp;
+    prev=o.closing;out[y]=o;
+  });
+  return out;
+}
+function trend(C){
+  var pts=[],run=null;
+  yrs().forEach(function(y){
+    var o=C[y]; if(run===null)run=o.opening;
+    var last=lastDue(y);
+    o.months.forEach(function(m){
+      if(!due(y,m))return;
+      run+=o.byMonth[m].s+o.byMonth[m].d;
+      DB.expenses.forEach(function(e){ if(+e.year!==y)return; var em=(+e.month)||last; if(em===m) run-=(+e.amount||0) });
+      pts.push({y:y,m:m,v:run});
+    });
+  });
+  return pts;
+}
+
+/* ---------- رسوم SVG ---------- */
+function niceMax(v){ if(v<=0)return 10; var p=Math.pow(10,Math.floor(Math.log10(v))); var f=v/p; var n=f<=1?1:f<=2?2:f<=5?5:10; return n*p; }
+function barChart(items){
+  var W=720,H=250,L=42,R=10,T=18,B=30,iw=W-L-R,ih=H-T-B;
+  var mx=niceMax(Math.max.apply(null,items.map(function(i){return i.s+i.d}).concat([1])));
+  var g='',i;
+  for(i=0;i<=4;i++){var y=T+ih-ih*i/4;g+='<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'"/><text x="'+(L-6)+'" y="'+(y+4)+'" text-anchor="end">'+fmt(mx*i/4)+'</text>'}
+  var slot=iw/items.length,bw=Math.min(40,slot*.62);
+  items.forEach(function(it,k){
+    var cx=L+slot*(k+.5),hs=ih*it.s/mx,hd=ih*it.d/mx,y0=T+ih;
+    if(it.s>0)g+='<rect x="'+(cx-bw/2)+'" y="'+(y0-hs)+'" width="'+bw+'" height="'+hs+'" rx="3" fill="var(--green)"/>';
+    if(it.d>0)g+='<rect x="'+(cx-bw/2)+'" y="'+(y0-hs-hd)+'" width="'+bw+'" height="'+hd+'" rx="3" fill="var(--gold)"/>';
+    if(it.s+it.d>0)g+='<text class="tv" x="'+cx+'" y="'+(y0-hs-hd-5)+'" text-anchor="middle">'+fmt(it.s+it.d)+'</text>';
+    g+='<text x="'+cx+'" y="'+(H-10)+'" text-anchor="middle">'+esc(it.l)+'</text>';
+  });
+  return '<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="رسم بياني للإيرادات">'+g+'</svg>';
+}
+function lineChart(pts){
+  if(pts.length<2) return '<div class="empty">لا توجد بيانات كافية للرسم</div>';
+  var W=720,H=250,L=48,R=18,T=26,B=32,iw=W-L-R,ih=H-T-B;
+  var vs=pts.map(function(p){return p.v}),lo=Math.min.apply(null,vs.concat([0])),hi=Math.max.apply(null,vs);
+  var mx=niceMax(hi-lo<=0?1:hi-lo)+lo; if(mx<hi)mx=hi*1.05;
+  var X=function(i){return L+iw*i/(pts.length-1)},Y=function(v){return T+ih-ih*(v-lo)/(mx-lo)};
+  var g='',i;
+  for(i=0;i<=4;i++){var v=lo+(mx-lo)*i/4,y=Y(v);g+='<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'"/><text x="'+(L-6)+'" y="'+(y+4)+'" text-anchor="end">'+fmt(v)+'</text>'}
+  var d=pts.map(function(p,k){return (k?'L':'M')+X(k).toFixed(1)+' '+Y(p.v).toFixed(1)}).join(' ');
+  g+='<defs><linearGradient id="ag" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--green)" stop-opacity=".28"/><stop offset="1" stop-color="var(--green)" stop-opacity="0"/></linearGradient></defs>';
+  g+='<path d="'+d+' L'+X(pts.length-1)+' '+(T+ih)+' L'+X(0)+' '+(T+ih)+' Z" fill="url(#ag)"/>';
+  g+='<path d="'+d+'" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+  pts.forEach(function(p,k){
+    if(p.m===1||k===0){g+='<line class="grid" x1="'+X(k)+'" x2="'+X(k)+'" y1="'+T+'" y2="'+(T+ih)+'" stroke-dasharray="3 4"/><text x="'+X(k)+'" y="'+(H-10)+'" text-anchor="middle">'+p.y+'</text>'}
+  });
+  var lp=pts[pts.length-1];
+  g+='<circle cx="'+X(pts.length-1)+'" cy="'+Y(lp.v)+'" r="4.5" fill="var(--gold)" stroke="var(--surface)" stroke-width="2"/><text class="tv" x="'+(X(pts.length-1)+14)+'" y="'+(Y(lp.v)-12)+'" text-anchor="end">'+fmt(lp.v)+'</text>';
+  return '<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="تطور الرصيد">'+g+'</svg>';
+}
+
+/* ---------- واجهة ---------- */
+function header(C){
+  var ys=yrs(),last=C[ys[ys.length-1]];
+  var tot={s:0,d:0,e:0};ys.forEach(function(y){tot.s+=C[y].subs;tot.d+=C[y].don;tot.e+=C[y].exp});
+  var asof='حتى '+MN[DB.asOf.month-1]+' '+DB.asOf.year;
+  var h='<div class="hero"><div class="hero-in"><div><div class="eyebrow">'+(MODE==='view'?'التقرير المالي للصندوق':'منصة إدارة الصندوق')+'</div><h1>'+esc(DB.title)+'</h1><div class="asof">'+asof+'</div></div>';
+  h+='<div class="actions noprint">'+(MODE==='admin'?'<span id="savestate"></span><button class="btn ghost" data-act="copylink">نسخ رابط الأعضاء</button>':'')+'</div></div></div>';
+  return h;
+}
+function kpis(C){
+  var ys=yrs(),last=C[ys[ys.length-1]],s=0,d=0,e=0;
+  ys.forEach(function(y){s+=C[y].subs;d+=C[y].don;e+=C[y].exp});
+  var k=function(cls,l,v,sub){return '<div class="kpi '+cls+'"><div class="l">'+l+'</div><div class="v">'+fmt(v)+'<small>د.أ</small></div><div class="s">'+sub+'</div></div>'};
+  return '<div class="kpis">'+k('main','الرصيد الحالي',last.closing,'حتى '+MN[DB.asOf.month-1]+' '+DB.asOf.year)+
+    k('','إجمالي الاشتراكات',s,'منذ بداية الصندوق')+k('','إجمالي التبرعات',d,'منذ بداية الصندوق')+
+    (e>0?k('','المبالغ المخصومة',e,'من الرصيد'):'')+'</div>';
+}
+function nav(){
+  var t=[['report','التقرير'],['entry','إدخال البيانات'],['settings','الإعدادات'],['publish','النشر والنسخ']];
+  return '<div class="nav noprint">'+t.map(function(x){return '<button data-act="tab" data-v="'+x[0]+'" class="'+(ui.tab===x[0]?'on':'')+'">'+x[1]+'</button>'}).join('')+'</div>';
+}
+function houseTable(C,scope){
+  var rows=DB.houses.map(function(h){
+    var s=0,d=0;
+    (scope==='all'?yrs():[+scope]).forEach(function(y){s+=C[y].byHouse[h.id]?C[y].byHouse[h.id].s:0;d+=C[y].byHouse[h.id]?C[y].byHouse[h.id].d:0});
+    return {n:h.name,s:s,d:d,t:s+d};
+  });
+  var T=rows.reduce(function(a,r){return a+r.t},0)||1,mx=Math.max.apply(null,rows.map(function(r){return r.t}).concat([1]));
+  var ts=0,td=0;
+  var b=rows.map(function(r){ts+=r.s;td+=r.d;
+    return '<tr><td class="name">'+esc(r.n)+'</td><td>'+fmt(r.s)+'</td><td>'+fmt(r.d)+'</td><td><b>'+fmt(r.t)+'</b></td><td><div class="pct"><span class="bar" style="width:'+Math.round(r.t/mx*80)+'px"></span>'+(r.t/T*100).toFixed(1)+'%</div></td></tr>'}).join('');
+  return '<div class="scroll"><table><thead><tr><th class="name">البيت</th><th>الاشتراكات</th><th>التبرعات</th><th>الإجمالي</th><th>النسبة من الإيرادات</th></tr></thead><tbody>'+b+
+    '<tr class="tot"><td class="name">المجموع</td><td>'+fmt(ts)+'</td><td>'+fmt(td)+'</td><td>'+fmt(ts+td)+'</td><td></td></tr></tbody></table></div>';
+}
+function statement(C,y){
+  var o=C[y],cur=y===DB.asOf.year;
+  var notes=DB.expenses.filter(function(e){return +e.year===y&&(+e.amount||0)>0});
+  var h='<div class="stmt">';
+  h+='<div class="r"><span>الرصيد المرحّل من السنوات السابقة</span><b>'+fmt(o.opening)+'</b></div>';
+  h+='<div class="r plus"><span>+ الاشتراكات الشهرية</span><b>'+fmt(o.subs)+'</b></div>';
+  h+='<div class="r plus"><span>+ التبرعات</span><b>'+fmt(o.don)+'</b></div>';
+  if(o.exp>0){h+='<div class="r minus"><span>− مبالغ مخصومة</span><b>'+fmt(o.exp)+'</b></div>';
+    notes.forEach(function(e){ if(e.note) h+='<div class="note">'+fmt(e.amount)+' — '+esc(e.note)+'</div>' })}
+  h+='<div class="r end"><span>'+(cur?'الرصيد الحالي':'الرصيد في نهاية السنة')+'</span><span>'+fmt(o.closing)+' د.أ</span></div></div>';
+  return h;
+}
+function lastEntered(y){
+  var Y=DB.years[y],last=0;
+  Y.months.forEach(function(m){if(!due(y,m))return;DB.houses.forEach(function(h){if(cell(y,'subs',m,h.id)>0||cell(y,'don',m,h.id)>0)last=Math.max(last,m)})});
+  return last||lastDue(y);
+}
+function focusMatrix(){
+  var th=$('#mx-cur');if(!th)return;
+  var box=th.closest('.scroll');if(!box)return;
+  var nm=box.querySelector('th.name');if(!nm)return;
+  var r=th.getBoundingClientRect(),n=nm.getBoundingClientRect();
+  box.scrollLeft+=r.right-n.left;
+}
+function matrix(C,y){
+  var o=C[y],kind=ui.mx;
+  var lm=lastEntered(y);
+  var head='<tr><th class="name">البيت</th>'+o.months.map(function(m){return '<th'+(m===lm?' class="curm" id="mx-cur"':'')+'>'+MS[m-1]+(m===lm?'<br><small>آخر إدخال</small>':'')+'</th>'}).join('')+'<th>المجموع</th></tr>';
+  var body=DB.houses.map(function(h){
+    var tot=0;
+    var tds=o.months.map(function(m){
+      var v=cell(y,kind,m,h.id);tot+=v;
+      if(!due(y,m)) return '<td class="fut">·</td>';
+      if(v>0) return '<td>'+fmt(v)+'</td>';
+      return kind==='subs'?'<td><span class="miss">&nbsp;لم يُسدَّد&nbsp;</span></td>':'<td class="fut">—</td>';
+    }).join('');
+    return '<tr><td class="name">'+esc(h.name)+'</td>'+tds+'<td><b>'+fmt(tot)+'</b></td></tr>';
+  }).join('');
+  var ft=o.months.map(function(m){return '<td>'+(due(y,m)?fmt(kind==='subs'?o.byMonth[m].s:o.byMonth[m].d):'·')+'</td>'}).join('');
+  var gt=kind==='subs'?o.subs:o.don;
+  return '<div class="mxbar noprint"><button class="btn sm '+(kind==='subs'?'primary':'')+'" data-act="mx" data-v="subs">الاشتراكات</button><button class="btn sm '+(kind==='don'?'primary':'')+'" data-act="mx" data-v="don">التبرعات</button></div>'+
+    '<div class="scroll"><table><thead>'+head+'</thead><tbody>'+body+'<tr class="tot"><td class="name">المجموع</td>'+ft+'<td>'+fmt(gt)+'</td></tr></tbody></table></div>';
+}
+function report(C){
+  var ys=yrs(),h=kpis(C);
+  h+='<div class="tabs noprint">'+ys.slice().reverse().map(function(y){return '<button data-act="year" data-v="'+y+'" class="'+(ui.year===String(y)?'on':'')+'">'+y+'</button>'}).join('')+'<button data-act="year" data-v="all" class="'+(ui.year==='all'?'on':'')+'">كل السنوات</button></div>';
+  if(ui.year==='all'){
+    h+='<div class="sec"><h2>مقارنة السنوات</h2><div class="card"><div class="legend"><span><i style="background:var(--green)"></i>اشتراكات</span><span><i style="background:var(--gold)"></i>تبرعات</span></div>'+
+      barChart(ys.map(function(y){return {l:String(y),s:C[y].subs,d:C[y].don}}))+'</div></div>';
+    h+='<div class="sec"><h2>ملخص السنوات</h2><div class="card scroll"><table><thead><tr><th class="name">السنة</th><th>رصيد مرحّل</th><th>اشتراكات</th><th>تبرعات</th><th>مخصوم</th><th>الرصيد</th></tr></thead><tbody>'+
+      ys.map(function(y){var o=C[y];return '<tr><td class="name">'+y+'</td><td>'+fmt(o.opening)+'</td><td>'+fmt(o.subs)+'</td><td>'+fmt(o.don)+'</td><td>'+(o.exp?fmt(o.exp):'—')+'</td><td><b>'+fmt(o.closing)+'</b></td></tr>'}).join('')+'</tbody></table></div></div>';
+    h+='<div class="sec"><h2>مساهمة كل بيت — منذ البداية</h2><div class="card">'+houseTable(C,'all')+'</div></div>';
+  }else{
+    var y=+ui.year,o=C[y];
+    h+='<div class="grid2"><div class="sec"><h2>كشف حساب '+y+'</h2><div class="card">'+statement(C,y)+'</div></div>';
+    h+='<div class="sec"><h2>الإيرادات الشهرية</h2><div class="card"><div class="legend"><span><i style="background:var(--green)"></i>اشتراكات</span><span><i style="background:var(--gold)"></i>تبرعات</span></div>'+
+      barChart(o.months.map(function(m){return {l:MS[m-1],s:due(y,m)?o.byMonth[m].s:0,d:due(y,m)?o.byMonth[m].d:0}}))+'</div></div></div>';
+    h+='<div class="sec"><h2>مساهمة كل بيت — '+y+'</h2><div class="card">'+houseTable(C,y)+'</div></div>';
+    h+='<div class="sec"><h2>حالة السداد الشهري — '+y+'</h2><div class="card">'+matrix(C,y)+'<p class="help">الخانة الحمراء تعني أن الشهر قد حلّ ولم يُسجَّل فيه سداد لذلك البيت.</p></div></div>';
+  }
+  h+='<div class="sec"><h2>تطور الرصيد</h2><div class="card">'+lineChart(trend(C))+'</div></div>';
+  return h;
+}
+
+/* ---- إدخال ---- */
+function entry(C){
+  var y=ui.entryYear,Y=DB.years[y],ys=yrs();
+  var h='<div class="card"><div class="row"><div class="field"><label>السنة</label><select class="sel" data-k="eyear">'+ys.map(function(v){return '<option value="'+v+'"'+(v===y?' selected':'')+'>'+v+'</option>'}).join('')+'</select></div>'+
+    '<button class="btn" data-act="addyear" style="margin-top:18px">+ إضافة سنة جديدة</button>'+
+    '<button class="btn" data-act="undo" style="margin-top:18px"'+(ui.undo.length?'':' disabled')+'>↩ تراجع'+(ui.undo.length?' ('+ui.undo.length+')':'')+'</button></div>'+
+    '<div class="live" id="live"></div><p class="help">اكتب المبلغ في الخانة، وبعد الانتهاء اضغط «نشر للأعضاء» من الشريط في الأسفل. «تعبئة الفارغ» تملأ الخانات الفارغة فقط بالقيمة المقررة ولا تغيّر ما كتبته، و«مسح» يصفّر الشهر، و«تراجع» يرجع عن آخر تعبئة أو مسح.</p></div>';
+  [['subs','الاشتراكات الشهرية'],['don','التبرعات']].forEach(function(K){
+    var kind=K[0];
+    h+='<div class="sec"><h2>'+K[1]+'</h2><div class="card scroll"><table><thead><tr><th class="name">الشهر</th>'+DB.houses.map(function(x){return '<th>'+esc(x.name)+'</th>'}).join('')+'<th>المجموع</th><th></th></tr>';
+    if(kind==='subs') h+='<tr><th class="name">القيمة المقررة</th>'+DB.houses.map(function(x){return '<th>'+fmt(Y.rates[x.id])+'</th>'}).join('')+'<th>'+fmt(DB.houses.reduce(function(a,x){return a+(+Y.rates[x.id]||0)},0))+'</th><th></th></tr>';
+    h+='</thead><tbody>';
+    Y.months.forEach(function(m){
+      h+='<tr><td class="name">'+MN[m-1]+'</td>'+DB.houses.map(function(x){var v=cell(y,kind,m,x.id);
+        return '<td><input class="num" inputmode="decimal" data-k="cell" data-kind="'+kind+'" data-m="'+m+'" data-h="'+x.id+'" value="'+(v||'')+'" placeholder="0"></td>'}).join('')+
+        '<td><b id="rt-'+kind+'-'+m+'">0</b></td>'+'<td>'+(kind==='subs'?'<button class="btn sm" data-act="fillrate" data-m="'+m+'" title="يملأ الخانات الفارغة فقط بالقيمة المقررة">تعبئة الفارغ</button> ':'')+'<button class="btn sm" data-act="clearrow" data-kind="'+kind+'" data-m="'+m+'" title="يصفّر هذا الشهر">مسح</button></td></tr>';
+    });
+    h+='<tr class="tot"><td class="name">المجموع</td>'+DB.houses.map(function(x){return '<td id="ct-'+kind+'-'+x.id+'">0</td>'}).join('')+'<td id="gt-'+kind+'">0</td><td></td></tr></tbody></table></div></div>';
+  });
+  return h;
+}
+function refreshEntry(){
+  var y=ui.entryYear,Y=DB.years[y],C=calcAll(),o=C[y];
+  ['subs','don'].forEach(function(kind){
+    var g=0;
+    Y.months.forEach(function(m){var t=0;DB.houses.forEach(function(h){t+=cell(y,kind,m,h.id)});var e=$('#rt-'+kind+'-'+m);if(e)e.textContent=fmt(t);g+=t});
+    DB.houses.forEach(function(h){var t=0;Y.months.forEach(function(m){t+=cell(y,kind,m,h.id)});var e=$('#ct-'+kind+'-'+h.id);if(e)e.textContent=fmt(t)});
+    var e=$('#gt-'+kind);if(e)e.textContent=fmt(g);
+  });
+  var l=$('#live');
+  if(l)l.innerHTML='<span>الرصيد المرحّل: <b>'+fmt(o.opening)+'</b></span><span>الاشتراكات: <b>'+fmt(o.subs)+'</b></span><span>التبرعات: <b>'+fmt(o.don)+'</b></span>'+(o.exp?'<span>المخصوم: <b>'+fmt(o.exp)+'</b></span>':'')+'<span>الرصيد: <b>'+fmt(o.closing)+'</b></span>';
+}
+
+/* ---- إعدادات ---- */
+function settings(){
+  var ys=yrs(),first=ys[0];
+  var h='<div class="sec" style="margin-top:0"><h2>بيانات عامة</h2><div class="card"><div class="row">'+
+    '<div class="field" style="flex:1;min-width:240px"><label>اسم الصندوق (يظهر في التقرير)</label><input class="txt" data-k="title" value="'+esc(DB.title)+'"></div>'+
+    '<div class="field"><label>التقرير حتى شهر</label><select class="sel" data-k="asm">'+MN.map(function(n,i){return '<option value="'+(i+1)+'"'+(i+1===DB.asOf.month?' selected':'')+'>'+n+'</option>'}).join('')+'</select></div>'+
+    '<div class="field"><label>سنة</label><select class="sel" data-k="asy">'+ys.map(function(y){return '<option value="'+y+'"'+(y===DB.asOf.year?' selected':'')+'>'+y+'</option>'}).join('')+'</select></div>'+
+    '<div class="field"><label>رصيد افتتاحي قبل '+first+'</label><input class="num" inputmode="decimal" data-k="open" value="'+(DB.years[first].opening||0)+'"></div>'+
+    '</div><p class="help">«التقرير حتى شهر» يحدد الأشهر التي تُعدّ مستحقة؛ فأي بيت لم يسجَّل له سداد في شهر مستحق يظهر باللون الأحمر.</p></div></div>';
+  h+='<div class="sec"><h2>البيوت</h2><div class="card">'+DB.houses.map(function(x,i){return '<div class="row" style="margin-bottom:8px"><span style="width:24px;color:var(--muted)">'+(i+1)+'</span><input class="txt" style="max-width:360px" data-k="hname" data-h="'+x.id+'" value="'+esc(x.name)+'"></div>'}).join('')+
+    '<button class="btn sm" data-act="addhouse">+ إضافة بيت</button></div></div>';
+  h+='<div class="sec"><h2>قيمة الاشتراك الشهري المقررة</h2><div class="card scroll"><table><thead><tr><th class="name">السنة</th>'+DB.houses.map(function(x){return '<th>'+esc(x.name)+'</th>'}).join('')+'</tr></thead><tbody>'+
+    ys.map(function(y){return '<tr><td class="name">'+y+'</td>'+DB.houses.map(function(x){return '<td><input class="num" inputmode="decimal" data-k="rate" data-y="'+y+'" data-h="'+x.id+'" value="'+(DB.years[y].rates[x.id]||0)+'"></td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div></div>';
+  h+='<div class="sec"><h2>المبالغ المخصومة من الرصيد</h2><div class="card"><div class="scroll"><table><thead><tr><th>السنة</th><th>الشهر</th><th>المبلغ</th><th class="name">البيان</th><th></th></tr></thead><tbody>'+
+    (DB.expenses.length?DB.expenses.map(function(e){return '<tr><td><select class="sel" data-k="ey" data-e="'+e.id+'">'+ys.map(function(y){return '<option'+(y===+e.year?' selected':'')+'>'+y+'</option>'}).join('')+'</select></td>'+
+      '<td><select class="sel" data-k="em" data-e="'+e.id+'"><option value="0">غير محدد</option>'+MN.map(function(n,i){return '<option value="'+(i+1)+'"'+(+e.month===i+1?' selected':'')+'>'+n+'</option>'}).join('')+'</select></td>'+
+      '<td><input class="num" inputmode="decimal" data-k="ea" data-e="'+e.id+'" value="'+(e.amount||'')+'"></td><td class="name"><input class="txt" style="min-width:220px" data-k="en" data-e="'+e.id+'" value="'+esc(e.note||'')+'" placeholder="مثال: شراء / مصاريف / سُلفة"></td>'+
+      '<td><button class="btn sm danger" data-act="delexp" data-e="'+e.id+'">حذف</button></td></tr>'}).join(''):'<tr><td colspan="5" class="empty">لا توجد مبالغ مخصومة</td></tr>')+
+    '</tbody></table></div><button class="btn sm" data-act="addexp" style="margin-top:10px">+ إضافة مبلغ مخصوم</button></div></div>';
+  return h;
+}
+
+/* ---- نشر ---- */
+function publishTab(){
+  return '<div class="sec" style="margin-top:0"><h2>نشر التقرير للأعضاء</h2><div class="pubgrid">'+
+  '<div class="card"><h3>١. انشر التعديلات</h3><p>يحفظ أرقامك الحالية ويحدّث الصفحة التي يفتحها الأعضاء. الرابط نفسه لا يتغيّر.</p><button class="btn primary" data-act="publish">نشر للأعضاء</button><p class="help" id="pubmsg"></p></div>'+
+  '<div class="card"><h3>٢. أرسل الرابط</h3><p>انسخ الرابط وأرسله في واتساب. يفتح عندهم للقراءة فقط.</p><button class="btn" data-act="copylink">نسخ الرابط</button><p class="help" id="linkmsg"></p></div>'+
+  '<div class="card"><h3>٣. تراجع</h3><p>يلغي كل ما أدخلته ولم تنشره، ويعود لآخر نسخة منشورة.</p><button class="btn danger" data-act="reset">'+(ui.resetArmed?'اضغط مرة أخرى للتأكيد':'تجاهل التعديلات غير المنشورة')+'</button></div>'+
+  '</div><p class="help">بعد كل تحديث شهري: غيّر «التقرير حتى شهر» من الإعدادات، ثم اضغط «نشر للأعضاء».</p></div>';
+}
+
+function footer(){
+  var d=new Date(DB.updated||Date.now());
+  return '<div class="foot">'+esc(DB.title)+' · آخر تحديث للبيانات: '+d.toLocaleDateString('en-GB')+'</div>';
+}
+
+function render(){
+  var y=window.scrollY,C=calcAll(),h=header(C);
+  var body=(MODE==='admin'?nav():'');
+  if(MODE==='view'||ui.tab==='report') body+=report(C);
+  else if(ui.tab==='entry') body+=entry(C);
+  else if(ui.tab==='settings') body+=settings();
+  else body+=publishTab();
+  $('#app').innerHTML=h+'<div class="wrap">'+body+footer()+'</div>';
+  if(ui.tab==='entry'&&MODE==='admin') refreshEntry();
+  window.scrollTo(0,y);
+  focusMatrix();
+  setDirty(dirty);
+}
+
+/* ---------- تنزيل ---------- */
+var PREFIX='<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>\n\n';
+function buildDoc(){
+  var d=JSON.parse(JSON.stringify(DB));delete d.base;
+  var data='<script id="fund-data" type="application/json">'+JSON.stringify(d).replace(/</g,'\\u003c')+'<'+'/script>';
+  return PREFIX+['#t','#lk1','#lk2','#main-css'].map(function(s){return $(s).outerHTML}).join('\n')+'\n<div id="app"></div>\n'+data+'\n'+$('#main-js').outerHTML+'\n\n\n</body></html>';
+}
+function say(id,txt){var e=$(id);if(e)e.textContent=txt}
+async function publishNow(){
+  say('#pubmsg','جارٍ النشر...');
+  try{
+    var art=await window.claude.use('artifact');
+    if(!art){say('#pubmsg','النشر غير متاح في هذه النافذة.');return}
+    DB.updated=Date.now();
+    try{localStorage.removeItem(KEY);localStorage.setItem('hasan-pub-ok',String(Date.now()))}catch(e){}
+    await art.publish(buildDoc());
+    say('#pubmsg','تم النشر.');
+  }catch(e){
+    var c=e&&e.code;
+    say('#pubmsg',c==='conflict'?'تم تحديث الصفحة من مكان آخر. أعد تحميل الصفحة ثم أعد المحاولة.':(c==='not_granted'||c==='not_writer')?'ليست لديك صلاحية النشر.':'تعذّر النشر. حاول مرة أخرى.');
+  }
+}
+function copyLink(){
+  var u=location.href.split('#')[0];
+  var ok=function(){say('#linkmsg','تم نسخ الرابط.');toast('تم نسخ الرابط. الصقه الآن في واتساب.')},no=function(){say('#linkmsg',u);toast(u)};
+  try{navigator.clipboard.writeText(u).then(ok,no)}catch(e){no()}
+}
+function mkBar(){
+  if($('#pubbar'))return;
+  var b=document.createElement('div');b.id='pubbar';b.hidden=true;
+  b.innerHTML='<span>لديك تعديلات لم تُنشر للأعضاء</span><button class="btn primary" data-act="publish">نشر للأعضاء</button>';
+  document.body.appendChild(b);
+}
+function toast(msg){
+  var t=$('#toast');if(!t){t=document.createElement('div');t.id='toast';document.body.appendChild(t)}
+  t.textContent=msg;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(function(){t.hidden=true},4500);
+}
+function showOk(){
+  var b=document.createElement('div');b.id='okbar';
+  b.innerHTML='<div><b>✓ تم نشر التقرير للأعضاء</b><br><span>الخطوة التالية: انسخ الرابط وأرسله في واتساب. الأعضاء يرونه الآن بالأرقام الجديدة.</span></div><div class="row"><button class="btn primary" data-act="copylink">نسخ الرابط</button><button class="btn" data-act="closeok">إغلاق</button></div>';
+  document.body.appendChild(b);
+}
+
+
+/* ---------- أحداث ---------- */
+function snap(){ui.undo.push({y:ui.entryYear,d:JSON.stringify(DB.years[ui.entryYear])});if(ui.undo.length>30)ui.undo.shift()}
+function nid(){return 'h'+Date.now().toString(36)+Math.floor(Math.random()*99)}
+function act(a,b){
+  var v=b.dataset.v;
+  if(a==='publish')publishNow();
+  else if(a==='copylink')copyLink();
+  else if(a==='closeok'){var ob=$('#okbar');if(ob)ob.remove()}
+  else if(a==='tab'){ui.tab=v;render();window.scrollTo(0,0)}
+  else if(a==='year'){ui.year=v;render()}
+  else if(a==='mx'){ui.mx=v;render()}
+  else if(a==='fillrate'){var y=ui.entryYear,m=+b.dataset.m;snap();DB.years[y].subs[m]=DB.years[y].subs[m]||{};DB.houses.forEach(function(h){if(!(+DB.years[y].subs[m][h.id]))DB.years[y].subs[m][h.id]=+DB.years[y].rates[h.id]||0});save();render()}
+  else if(a==='clearrow'){var y2=ui.entryYear,m2=+b.dataset.m;snap();DB.years[y2][b.dataset.kind][m2]={};save();render()}
+  else if(a==='undo'){var s=ui.undo.pop();if(s){DB.years[s.y]=JSON.parse(s.d);ui.entryYear=s.y;save()}render()}
+  else if(a==='addyear'){var ys=yrs(),ny=ys[ys.length-1]+1,L=DB.years[ys[ys.length-1]];DB.years[ny]={months:[1,2,3,4,5,6,7,8,9,10,11,12],opening:0,rates:JSON.parse(JSON.stringify(L.rates)),subs:{},don:{}};ui.entryYear=ny;save();render()}
+  else if(a==='addhouse'){var id=nid();DB.houses.push({id:id,name:'بيت جديد'});yrs().forEach(function(y){DB.years[y].rates[id]=0});save();render()}
+  else if(a==='addexp'){DB.expenses.push({id:nid(),year:DB.asOf.year,month:0,amount:0,note:''});save();render()}
+  else if(a==='delexp'){DB.expenses=DB.expenses.filter(function(e){return e.id!==b.dataset.e});save();render()}
+  else if(a==='reset'){if(!ui.resetArmed){ui.resetArmed=true;render();return}ui.resetArmed=false;try{localStorage.removeItem(KEY)}catch(e){}DB=JSON.parse(JSON.stringify(EMB));dirty=false;render()}
+}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(b)act(b.dataset.act,b)});
+document.addEventListener('input',function(e){
+  if(MODE!=='admin')return;
+  var t=e.target;if(t.dataset.k!=='cell')return;
+  var y=ui.entryYear,kind=t.dataset.kind,m=t.dataset.m,h=t.dataset.h,v=num(t.value);
+  var Y=DB.years[y];Y[kind][m]=Y[kind][m]||{};Y[kind][m][h]=v;
+  refreshEntry();saveSoon();
+});
+document.addEventListener('change',function(e){
+  if(MODE!=='admin')return;
+  var t=e.target,k=t.dataset.k;if(!k||k==='cell')return;
+  if(k==='eyear'){ui.entryYear=+t.value;render();return}
+  if(k==='title'){DB.title=t.value.trim()||DB.title}
+  else if(k==='asm'){DB.asOf.month=+t.value}
+  else if(k==='asy'){DB.asOf.year=+t.value}
+  else if(k==='open'){DB.years[yrs()[0]].opening=num(t.value)}
+  else if(k==='hname'){DB.houses.forEach(function(h){if(h.id===t.dataset.h)h.name=t.value.trim()||h.name})}
+  else if(k==='rate'){DB.years[t.dataset.y].rates[t.dataset.h]=num(t.value)}
+  else if(k==='ey'||k==='em'||k==='ea'||k==='en'){DB.expenses.forEach(function(x){if(x.id===t.dataset.e){if(k==='ey')x.year=+t.value;if(k==='em')x.month=+t.value;if(k==='ea')x.amount=num(t.value);if(k==='en')x.note=t.value}})}
+  save();render();
+});
+render();
+(async function(){
+  try{
+    return;
+    var u=await window.claude.use('user');
+    if(!(u&&u.canEdit&&u.canEdit()))return;
+    MODE='admin';
+    try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.base===EMB.updated){DB=s;dirty=true}}catch(e){}
+    mkBar();render();
+    try{var f=+localStorage.getItem('hasan-pub-ok');localStorage.removeItem('hasan-pub-ok');if(f&&Date.now()-f<180000)showOk()}catch(e){}
+  }catch(e){}
+})();
+})();
+
+</script>
+
+
